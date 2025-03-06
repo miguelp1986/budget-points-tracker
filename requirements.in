@@ -79,6 +79,7 @@ sqlmodel
 stack-data
 starlette
 terminaltables
+tox
 traitlets
 typer
 typing_extensions

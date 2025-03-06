@@ -4,6 +4,7 @@ This module contains the API endpoints for user registration, login, and retriev
 It utilizes the FastAPI framework for building the API and interacts with a database using SQLModel.
 """
 
+from contextlib import asynccontextmanager
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -17,8 +18,8 @@ from src.utils.shared import LOGGER
 app = FastAPI()
 
 
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """
     TODO: Initial development only
     Use Alembic for migrations in production.
@@ -70,7 +71,7 @@ def get_users(db: Session = Depends(get_db)):
     ]
 
 
-@app.get("/api/v1/user/login")
+@app.get("/api/v1/users/login")
 def login_user(login_data: LoginData, db: Session = Depends(get_db)):
     user = db.exec(select(User).where(User.username == login_data.username)).first()
     if not user or not user.verify_password(login_data.password, user.password):
