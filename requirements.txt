@@ -92,6 +92,8 @@ filelock==3.17.0
     #   virtualenv
 flake8==7.1.2
     # via -r requirements.in
+greenlet==3.2.3
+    # via sqlalchemy
 h11==0.14.0
     # via
     #   -r requirements.in
@@ -268,7 +270,7 @@ pyyaml==6.0.2
     #   -r requirements.in
     #   pre-commit
     #   uvicorn
-requests==2.32.3
+requests==2.32.4
     # via -r requirements.in
 rich==13.9.4
     # via
